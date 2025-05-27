@@ -6,7 +6,7 @@ app:
   accessibility_statement: "For research and educational purposes only"
 
 model_download:
-  github_base_url: "https://github.com/camlas/ovarian_cancer_webapp/releases/download/feature_extractor_resnet50"
+  github_base_url: "https://github.com/camlas/ovarian_cancer_webapp/releases/download/model_files"
   required_files:
     - "feature_extractor_resnet50.pth"
     - "rf_feature_selector.pkl"
