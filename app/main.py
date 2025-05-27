@@ -61,6 +61,15 @@ app.include_router(privacy.router, prefix="/privacy", tags=["Privacy"])
 
 @app.get("/")
 async def root():
+    # Get model download config
+    download_config = settings.get_model_download_config()
+    if download_config.get('preload_on_startup', True):
+        print("🔄 Preloading ML models...")
+
+        # Start model preloading in background task
+        asyncio.create_task(preload_ml_models())
+    else:
+        print("⏭️ Model preloading disabled, will load on first request")
     return RedirectResponse(url="/home")
 
 
@@ -172,16 +181,6 @@ async def startup_event():
     print(f"📱 Debug mode: {settings.DEBUG}")
     print(f"🔧 Device: {settings.DEVICE}")
     print(f"📁 Model path: {settings.MODEL_PATH}")
-
-    # Get model download config
-    download_config = settings.get_model_download_config()
-    if download_config.get('preload_on_startup', True):
-        print("🔄 Preloading ML models...")
-
-        # Start model preloading in background task
-        asyncio.create_task(preload_ml_models())
-    else:
-        print("⏭️ Model preloading disabled, will load on first request")
 
 
 # Shutdown event
