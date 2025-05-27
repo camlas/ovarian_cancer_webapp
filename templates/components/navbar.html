@@ -85,25 +85,6 @@
     <!-- Mobile Navigation -->
     <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <!-- CAMLAS Info for Mobile -->
-            <div class="px-3 py-2 border-b border-gray-100 mb-2">
-                <div class="flex items-center justify-between">
-                    <img src="/static/images/camlas.png"
-                         alt="CAMLAS"
-                         class="h-8 w-auto"
-                         onerror="this.style.display='none'">
-                    <div class="flex items-center space-x-1">
-                        {% if config_data.project_status == 'COMPLETED' %}
-                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                            <span class="text-xs font-medium text-gray-700">{{ config_data.project_status }}</span>
-                        {% else %}
-                            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                            <span class="text-xs font-medium text-gray-700">{{ config_data.project_status or 'ACTIVE' }}</span>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-
             <a href="/home" class="mobile-nav-link {{ 'active' if request.url.path == '/home' else '' }}">
                 <i class="fas fa-home mr-2"></i>Home
             </a>
@@ -113,11 +94,11 @@
             <a href="/researchers" class="mobile-nav-link {{ 'active' if request.url.path.startswith('/researchers') else '' }}">
                 <i class="fas fa-users mr-2"></i>Researchers
             </a>
+            <a href="/resources" class="mobile-nav-link {{ 'active' if request.url.path.startswith('/resources') else '' }}">
+                <i class="fas fa-database mr-2"></i>Resources
+            </a>
             <a href="/about" class="mobile-nav-link {{ 'active' if request.url.path.startswith('/about') else '' }}">
                 <i class="fas fa-info-circle mr-2"></i>About
-            </a>
-            <a href="/docs" target="_blank" class="mobile-nav-link">
-                <i class="fas fa-code mr-2"></i>API Docs
             </a>
         </div>
     </div>

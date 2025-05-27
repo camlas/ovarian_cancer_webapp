@@ -89,20 +89,20 @@
                  onerror="this.parentElement.innerHTML='<div class=\'workflow-placeholder\'><i class=\'fas fa-project-diagram text-6xl text-gray-400 mb-4\'></i><p class=\'text-gray-500\'>Workflow diagram will be displayed here<br><small>{{ algorithm.workflow_image }}</small></p></div>'">
 
             <!-- Action Buttons -->
-            <div class="mt-6 flex justify-center space-x-4">
+            <div class="mt-6 flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
               <!-- View Full Size Button -->
               <button onclick="openImageModal('{{ image_path }}')"
-                      class="inline-flex items-center px-4 py-2 bg-white hover:bg-gray-100 text-gray-800 font-medium rounded-lg border border-gray-300 shadow-sm transition-all duration-300">
-                <i class="fas fa-expand-arrows-alt mr-2"></i>
-                View Full Size
+                      class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2.5 bg-white hover:bg-gray-100 text-gray-800 font-medium rounded-lg border border-gray-300 shadow-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <i class="fas fa-expand-arrows-alt mr-2 text-sm"></i>
+                <span class="text-sm sm:text-base">View Full Size</span>
               </button>
 
               <!-- Download Image Button -->
               <a href="{{ image_path }}"
                  download="{{ algorithm.workflow_image }}"
-                 class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-sm transition-all duration-300">
-                <i class="fas fa-download mr-2"></i>
-                Download Image
+                 class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium rounded-lg shadow-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <i class="fas fa-download mr-2 text-sm"></i>
+                <span class="text-sm sm:text-base">Download Image</span>
               </a>
             </div>
           {% else %}

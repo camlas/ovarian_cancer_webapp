@@ -27,14 +27,14 @@
 
     <!-- Main Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-5xl md:text-7xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight animate-slide-up" style="animation-delay: 0.2s;">
+        <h1 class="text-3xl md:text-6xl lg:text-7xl sm:text-4xl font-bold text-gray-900 mb-8 leading-tight animate-slide-up" style="animation-delay: 0.2s;">
             <span class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-pulse-slow">
                 {{ config_data.project_metadata.paper_title }}
             </span>
         </h1>
 
         <!-- Enhanced Description -->
-        <p class="text-xl md:text-2xl lg:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed animate-slide-up" style="animation-delay: 0.4s;">
+        <p class="text-lg md:text-2xl lg:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed animate-slide-up" style="animation-delay: 0.4s;">
             {{ config_data.project_metadata.paper_description }}
         </p>
 
@@ -122,16 +122,21 @@
                         </button>
 
                         <!-- Enhanced File Info -->
-                        <div class="mt-6 p-4 bg-white/80 rounded-xl border border-blue-200">
-                            <div class="flex items-center justify-center text-sm text-gray-600 space-x-4">
+                        <div class="mt-4 sm:mt-6 p-3 sm:p-4 bg-white/80 rounded-xl border border-blue-200">
+                            <div class="flex flex-col sm:flex-row items-center justify-center text-xs sm:text-sm text-gray-600 space-y-2 sm:space-y-0 sm:space-x-4">
+                                <!-- File Types -->
                                 <div class="flex items-center">
-                                    <i class="fas fa-file-image text-blue-500 mr-2"></i>
-                                    <span>JPG, PNG, BMP, TIFF</span>
+                                    <i class="fas fa-file-image text-blue-500 mr-1.5 sm:mr-2 text-sm"></i>
+                                    <span class="font-medium">JPG, PNG, BMP, TIFF</span>
                                 </div>
-                                <div class="w-1 h-1 bg-gray-400 rounded-full"></div>
+
+                                <!-- Separator - Hidden on mobile, visible on desktop -->
+                                <div class="hidden sm:block w-1 h-1 bg-gray-400 rounded-full"></div>
+
+                                <!-- File Size -->
                                 <div class="flex items-center">
-                                    <i class="fas fa-weight-hanging text-green-500 mr-2"></i>
-                                    <span>Max: 10MB</span>
+                                    <i class="fas fa-weight-hanging text-green-500 mr-1.5 sm:mr-2 text-sm"></i>
+                                    <span class="font-medium">Max: 10MB</span>
                                 </div>
                             </div>
                         </div>
