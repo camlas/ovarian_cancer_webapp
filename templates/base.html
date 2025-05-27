@@ -7,21 +7,21 @@
 
     <!-- Primary Meta Tags -->
     <title>{% block title %}{{ config_data.page_titles.base if config_data and config_data.page_titles else "Ovarian Cancer AI Detection | CAMLAS Research" }}{% endblock %}</title>
-    <meta name="title" content="{% block meta_title %}{{ config_data.page_titles.base if config_data and config_data.page_titles else "Ovarian Cancer AI Detection | CAMLAS Research" }}{% endblock %}">
-    <meta name="description" content="{% block meta_description %}{{ config_data.project_metadata.paper_description if config_data and config_data.project_metadata else "Advanced AI-powered ovarian cancer detection system using deep learning and medical imaging for early diagnosis and improved patient outcomes." }}{% endblock %}">
+    <meta name="title" content="{% block meta_title %}{% if config_data and config_data.page_titles and config_data.page_titles.base %}{{ config_data.page_titles.base }}{% else %}Ovarian Cancer AI Detection | CAMLAS Research{% endif %}{% endblock %}">
+    <meta name="description" content="{% block meta_description %}{% if config_data and config_data.project_metadata and config_data.project_metadata.paper_description %}{{ config_data.project_metadata.paper_description }}{% else %}Advanced AI-powered ovarian cancer detection system using deep learning and medical imaging for early diagnosis and improved patient outcomes.{% endif %}{% endblock %}">
     <meta name="keywords" content="{% block meta_keywords %}ovarian cancer detection, AI medical imaging, deep learning, cancer diagnosis, histopathology, CAMLAS research, medical AI, oncology, early detection, machine learning{% endblock %}">
     <meta name="author" content="{% block meta_author %}CAMLAS Innovation Hub{% endblock %}">
     <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="{% block canonical_url %}{{ request.url if request else config_data.website_url if config_data else 'https://camlaslab.org.bd' }}{% endblock %}">
+    <link rel="canonical" href="{% block canonical_url %}{% if request %}{{ request.url }}{% elif config_data and config_data.website_url %}{{ config_data.website_url }}{% else %}https://camlaslab.org.bd{% endif %}{% endblock %}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="{% block og_type %}website{% endblock %}">
-    <meta property="og:url" content="{% block og_url %}{{ request.url if request else config_data.website_url if config_data else 'https://camlaslab.org.bd' }}{% endblock %}">
-    <meta property="og:title" content="{% block og_title %}{{ config_data.page_titles.base if config_data and config_data.page_titles else "Ovarian Cancer AI Detection | CAMLAS Research" }}{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}{{ config_data.project_metadata.paper_description if config_data and config_data.project_metadata else "Advanced AI-powered ovarian cancer detection system using deep learning and medical imaging for early diagnosis." }}{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{{ config_data.website_url if config_data else 'https://camlaslab.org.bd' }}/static/images/og-image.jpg{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}{% if request %}{{ request.url }}{% elif config_data and config_data.website_url %}{{ config_data.website_url }}{% else %}https://camlaslab.org.bd{% endif %}{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{% if config_data and config_data.page_titles and config_data.page_titles.base %}{{ config_data.page_titles.base }}{% else %}Ovarian Cancer AI Detection | CAMLAS Research{% endif %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% if config_data and config_data.project_metadata and config_data.project_metadata.paper_description %}{{ config_data.project_metadata.paper_description }}{% else %}Advanced AI-powered ovarian cancer detection system using deep learning and medical imaging for early diagnosis.{% endif %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% if config_data and config_data.website_url %}{{ config_data.website_url }}{% else %}https://camlaslab.org.bd{% endif %}/static/images/og-image.jpg{% endblock %}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="{% block og_image_alt %}CAMLAS Ovarian Cancer AI Detection System{% endblock %}">
@@ -30,10 +30,10 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="{% block twitter_card %}summary_large_image{% endblock %}">
-    <meta name="twitter:url" content="{% block twitter_url %}{{ request.url if request else config_data.website_url if config_data else 'https://camlaslab.org.bd' }}{% endblock %}">
-    <meta name="twitter:title" content="{% block twitter_title %}{{ config_data.page_titles.base if config_data and config_data.page_titles else "Ovarian Cancer AI Detection | CAMLAS Research" }}{% endblock %}">
-    <meta name="twitter:description" content="{% block twitter_description %}{{ config_data.project_metadata.paper_description if config_data and config_data.project_metadata else "Advanced AI-powered ovarian cancer detection using deep learning and medical imaging." }}{% endblock %}">
-    <meta name="twitter:image" content="{% block twitter_image %}{{ config_data.website_url if config_data else 'https://camlaslab.org.bd' }}/static/images/twitter-image.jpg{% endblock %}">
+    <meta name="twitter:url" content="{% block twitter_url %}{% if request %}{{ request.url }}{% elif config_data and config_data.website_url %}{{ config_data.website_url }}{% else %}https://camlaslab.org.bd{% endif %}{% endblock %}">
+    <meta name="twitter:title" content="{% block twitter_title %}{% if config_data and config_data.page_titles and config_data.page_titles.base %}{{ config_data.page_titles.base }}{% else %}Ovarian Cancer AI Detection | CAMLAS Research{% endif %}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{% if config_data and config_data.project_metadata and config_data.project_metadata.paper_description %}{{ config_data.project_metadata.paper_description }}{% else %}Advanced AI-powered ovarian cancer detection using deep learning and medical imaging.{% endif %}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{% if config_data and config_data.website_url %}{{ config_data.website_url }}{% else %}https://camlaslab.org.bd{% endif %}/static/images/twitter-image.jpg{% endblock %}">
     <meta name="twitter:image:alt" content="{% block twitter_image_alt %}CAMLAS Ovarian Cancer AI Detection System{% endblock %}">
     {% if config_data and config_data.twitter_handle %}
     <meta name="twitter:site" content="@{{ config_data.twitter_handle }}">
@@ -47,7 +47,7 @@
     <meta name="msapplication-navbutton-color" content="#3B82F6">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="{% block apple_title %}CAMLAS Cancer AI{% endblock %}">
+    <meta name="apple-mobile-web-app-title" content="{% block apple_title %}CAMLAS Research{% endblock %}">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -64,17 +64,11 @@
             "name": "CAMLAS Innovation Hub",
             "url": "{{ config_data.website_url if config_data else 'https://camlaslab.org.bd' }}",
             "email": "{{ config_data.contact_email if config_data else 'research@camlaslab.org.bd' }}",
-            "foundingDate": "2020",
+            "foundingDate": "2025",
             "location": {
                 "@type": "Place",
                 "name": "Bangladesh"
             }
-        },
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD",
-            "availability": "https://schema.org/InStock"
         },
         "featureList": [
             "AI-powered cancer detection",
@@ -87,7 +81,7 @@
     </script>
 
     <!-- Favicons and Icons -->
-    <link rel="icon" type="image/x-icon" href="/static/images/camlas-icon.ico">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
