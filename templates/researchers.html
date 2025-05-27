@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+
+{% block title %}{{ config_data.page_titles.researchers or "Research Team - " + config_data.app_name }}{% endblock %}
+
+{% block content %}
+<!-- Research Team Hero Section -->
+<section class="relative bg-gradient-to-br from-blue-50 via-purple-50 to-green-50 py-20">
+    <div class="absolute inset-0 overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute top-20 left-10 text-blue-200 opacity-30 animate-float">
+            <i class="fas fa-user-graduate text-4xl"></i>
+        </div>
+        <div class="absolute top-40 right-20 text-purple-200 opacity-30 animate-float-delayed">
+            <i class="fas fa-microscope text-3xl"></i>
+        </div>
+        <div class="absolute bottom-20 left-20 text-green-200 opacity-30 animate-float">
+            <i class="fas fa-flask text-3xl"></i>
+        </div>
+        <div class="absolute bottom-40 right-10 text-pink-200 opacity-30 animate-float-delayed">
+            <i class="fas fa-brain text-4xl"></i>
+        </div>
+
+        <!-- Animated Circles -->
+        <div class="absolute top-10 right-1/4 w-32 h-32 bg-blue-100 rounded-full opacity-20 animate-pulse-slow"></div>
+        <div class="absolute bottom-10 left-1/4 w-24 h-24 bg-purple-100 rounded-full opacity-20 animate-pulse-slow" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 right-10 w-16 h-16 bg-green-100 rounded-full opacity-20 animate-pulse-slow" style="animation-delay: 1s;"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="animate-slide-up" style="animation-delay: 0.2s;">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight">
+                <span class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                    Research Team
+                </span>
+            </h1>
+        </div>
+
+        <div class="animate-slide-up" style="animation-delay: 0.4s;">
+            <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
+                {{ config_data.research_page.subtitle }}
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Main Research Team Section -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <span class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full mb-6 mr-4">
+                    <i class="fas fa-users text-3xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"></i>
+                </span>
+                Our Expert Team
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                A multidisciplinary team of researchers, clinicians, and AI experts working together to advance cancer detection technology
+            </p>
+        </div>
+
+        <!-- Researchers Grid -->
+        <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
+            {% for researcher in researchers %}
+            <div class="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border border-gray-100 overflow-hidden group">
+                <!-- Researcher Card Header -->
+                <div class="relative bg-gradient-to-br from-blue-600 to-purple-600 p-6 text-white">
+                    <!-- Corresponding Author Badge -->
+                    {% if researcher.corresponding_author %}
+                    <div class="absolute top-4 right-4 bg-yellow-400 text-yellow-900 text-xs px-3 py-1 rounded-full font-bold shadow-lg">
+                        <i class="fas fa-star mr-1"></i>Corresponding Author
+                    </div>
+                    {% endif %}
+
+                    <!-- Profile Image -->
+                    <div class="text-center mb-4">
+                        <div class="relative inline-block">
+                            <img src="/static/images/{{ researcher.image }}"
+                                 alt="{{ researcher.name }}"
+                                 class="w-24 h-24 rounded-full border-4 border-white/20 shadow-xl object-cover group-hover:scale-110 transition-transform duration-300"
+                                 onerror="this.src='data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;96&quot; height=&quot;96&quot;><rect width=&quot;96&quot; height=&quot;96&quot; fill=&quot;%236b7280&quot; rx=&quot;48&quot;/><text x=&quot;48&quot; y=&quot;56&quot; text-anchor=&quot;middle&quot; dy=&quot;.3em&quot; fill=&quot;white&quot; font-size=&quot;36&quot; font-family=&quot;system-ui&quot;>{{ researcher.name.split()[0][0] }}{{ researcher.name.split()[-1][0] }}</text></svg>'">
+
+                            <!-- Online Status Indicator -->
+                            <div class="absolute bottom-0 right-0 w-6 h-6 bg-green-400 border-2 border-white rounded-full shadow-sm"></div>
+                        </div>
+                    </div>
+
+                    <!-- Basic Info -->
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-1">{{ researcher.name }}</h3>
+                        <p class="text-blue-100 text-sm font-medium">{{ researcher.designation }}</p>
+                    </div>
+                </div>
+
+                <!-- Card Body -->
+                <div class="p-6">
+                    <!-- Department & University -->
+                    <div class="mb-4">
+                        <div class="flex items-center text-sm text-gray-600 mb-2">
+                            <i class="fas fa-building text-blue-500 mr-2 w-4"></i>
+                            <span>{{ researcher.department }}</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600 mb-2">
+                            <i class="fas fa-chalkboard-teacher text-purple-500 mr-2 w-4"></i>
+                            <span>{{ researcher.faculty }}</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600 mb-2">
+                            <i class="fas fa-university text-purple-500 mr-2 w-4"></i>
+                            <span>{{ researcher.university }}</span>
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i class="fa-regular fa-id-badge text-green-500 mr-2 w-4"></i>
+                            <span class="font-medium text-gray-800">{{ researcher.role }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="mb-6">
+                        <a href="mailto:{{ researcher.email }}"
+                           class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors duration-200">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span class="truncate">{{ researcher.email }}</span>
+                        </a>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="flex flex-wrap gap-3">
+                        {% if researcher.research_gate %}
+                        <a href="{{ researcher.research_gate }}" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-lg hover:from-cyan-600 hover:to-cyan-700 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl group-hover:animate-pulse">
+                            <i class="fab fa-researchgate text-sm"></i>
+                        </a>
+                        {% endif %}
+
+                        {% if researcher.orcid %}
+                        <a href="https://orcid.org/{{ researcher.orcid }}" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl">
+                            <i class="fab fa-orcid text-sm"></i>
+                        </a>
+                        {% endif %}
+
+                        {% if researcher.linkedin %}
+                        <a href="{{ researcher.linkedin }}" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        {% endif %}
+
+                        {% if researcher.website %}
+                        <a href="{{ researcher.website }}" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center justify-center w-10 h-10 bg-gradient-to-br from-gray-600 to-gray-700 text-white rounded-lg hover:from-gray-700 hover:to-gray-800 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-globe text-sm"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Card Footer with Role Highlight -->
+                <div class="px-6 pb-6">
+                    <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 border border-blue-100">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 text-white rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-user-tie text-sm"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-500 uppercase tracking-wide font-medium">Expertise</div>
+                                <div class="text-sm font-semibold text-gray-800">{{ researcher.expertise }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Research Collaboration Section -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <span class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full mb-6 mr-4">
+                    <i class="fas fa-handshake text-3xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"></i>
+                </span>
+                {{ config_data.collaborative_excellence.title }}
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                {{ config_data.collaborative_excellence.subtitle }}
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 mb-16">
+            {% for area in config_data.collaborative_excellence.expertise_areas %}
+            <div class="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 transform hover:scale-105">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-{{ area.color_from }} to-{{ area.color_to }} text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="{{ area.icon }} text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">{{ area.title }}</h3>
+                </div>
+                <div class="space-y-3">
+                    {% for capability in area.capabilities %}
+                    <div class="flex items-center text-gray-700">
+                        <i class="{{ capability.icon }} text-green-500 mr-3"></i>
+                        <span>{{ capability.text }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact Research Team Section -->
+<section class="py-20 bg-gradient-to-br from-blue-600 to-purple-600">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+            Collaborate With Our Team
+        </h2>
+        <p class="text-xl text-blue-100 mb-8 leading-relaxed">
+            Interested in research collaboration, partnership opportunities, or have questions about our work? We'd love to hear from you.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="mailto:{{ config_data.contact_email }}" class="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <i class="fas fa-envelope mr-3"></i>
+                Contact Research Team
+            </a>
+            <a href="{{ config_data.website_url }}" target="_blank" class="inline-flex items-center px-8 py-4 bg-blue-500 text-white font-bold rounded-xl hover:bg-blue-400 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <i class="fas fa-external-link-alt mr-3"></i>
+                Visit CAMLAS Lab
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/researcher.js"></script>
+{% endblock %}

@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+
+{% block title %}{{ config_data.page_titles.about or "About - " + config_data.app_name }}{% endblock %}
+
+{% block content %}
+<!-- About Hero Section -->
+<section class="relative bg-gradient-to-br from-blue-50 via-purple-50 to-green-50 py-20">
+    <div class="absolute inset-0 overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute top-20 left-10 text-blue-200 opacity-30 animate-float">
+            <i class="fas fa-heartbeat text-4xl"></i>
+        </div>
+        <div class="absolute top-40 right-20 text-purple-200 opacity-30 animate-float-delayed">
+            <i class="fas fa-shield-alt text-3xl"></i>
+        </div>
+        <div class="absolute bottom-20 left-20 text-green-200 opacity-30 animate-float">
+            <i class="fas fa-globe text-3xl"></i>
+        </div>
+        <div class="absolute bottom-40 right-10 text-pink-200 opacity-30 animate-float-delayed">
+            <i class="fas fa-lightbulb text-4xl"></i>
+        </div>
+
+        <!-- Animated Circles -->
+        <div class="absolute top-10 right-1/4 w-32 h-32 bg-blue-100 rounded-full opacity-20 animate-pulse-slow"></div>
+        <div class="absolute bottom-10 left-1/4 w-24 h-24 bg-purple-100 rounded-full opacity-20 animate-pulse-slow" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 right-10 w-16 h-16 bg-green-100 rounded-full opacity-20 animate-pulse-slow" style="animation-delay: 1s;"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="animate-slide-up" style="animation-delay: 0.2s;">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight">
+                <span class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                    About Our Project
+                </span>
+            </h1>
+        </div>
+
+        <div class="animate-slide-up" style="animation-delay: 0.4s;">
+            <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
+                {{ config_data.about.hero_subtitle }}
+            </p>
+        </div>
+
+        <!-- Quick Navigation -->
+        <div class="animate-slide-up" style="animation-delay: 0.6s;">
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <a href="#mission" class="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm hover:bg-white text-primary border-2 border-primary rounded-xl transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-bullseye mr-2"></i>
+                    Mission
+                </a>
+                <a href="#technology" class="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm hover:bg-white text-secondary border-2 border-secondary rounded-xl transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-cogs mr-2"></i>
+                    Technology
+                </a>
+                <a href="#impact" class="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm hover:bg-white text-accent border-2 border-accent rounded-xl transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-chart-line mr-2"></i>
+                    Impact
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section id="mission" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Mission Content -->
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                    <span class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full mb-6 mr-4">
+                        <i class="fas fa-bullseye text-3xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"></i>
+                    </span>
+                    {{ config_data.about.mission.title }}
+                </h2>
+                <div class="prose prose-lg text-gray-700 leading-relaxed">
+                    <p class="mb-6">
+                        {{ config_data.about.mission.description }}
+                    </p>
+                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                            <i class="fas fa-heart text-red-500 mr-3"></i>
+                            Core Values
+                        </h3>
+                        <ul class="space-y-3">
+                            {% for value in config_data.about.mission.core_values %}
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <span><strong>{{ value.title }}:</strong> {{ value.description }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mission Visual -->
+            <div class="relative">
+                <div class="bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl p-8 shadow-xl">
+                    <div class="text-center">
+                        <div class="grid grid-cols-2 gap-6 mb-8">
+                            {% for area in config_data.about.mission.impact_areas %}
+                            <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                <div class="w-12 h-12 bg-gradient-to-br from-{{ area.color }}-500 to-{{ area.color }}-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="{{ area.icon }} text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2">{{ area.title }}</h4>
+                                <p class="text-sm text-gray-600">{{ area.description }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Vision Section - Simplified and Dynamic -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Vision Content -->
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                    <span class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-100 to-blue-100 rounded-full mb-6 mr-4">
+                        <i class="fas fa-telescope text-3xl bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"></i>
+                    </span>
+                    {{ config_data.about.vision.title }}
+                </h2>
+                <div class="prose prose-lg text-gray-700 leading-relaxed">
+                    <p class="mb-6 text-justify">
+                        {{ config_data.about.vision.description }}
+                    </p>
+
+                    <p class="text-justify">
+                        {{ config_data.about.vision.collaboration_message }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Vision Visual - Simplified -->
+            <div class="relative">
+                <div class="bg-gradient-to-br from-green-100 to-blue-100 rounded-3xl p-8 shadow-xl">
+                    <div class="text-center">
+                        <div class="mb-8">
+                            <div class="w-24 h-24 bg-gradient-to-br from-green-500 to-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-telescope text-3xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Vision 2030</h3>
+                            <p class="text-gray-700 text-lg leading-relaxed">
+                                A world where AI-powered medical imaging enables rapid, accurate, and affordable cancer screening globally.
+                            </p>
+                        </div>
+
+                        <!-- Future Goals -->
+                        <div class="space-y-4">
+                            {% for goal in config_data.about.vision.future_goals %}
+                            <div class="bg-white rounded-xl p-4 shadow-md">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 bg-{{ goal.color }}-500 text-white rounded-full flex items-center justify-center mr-4">
+                                        <i class="{{ goal.icon }} text-sm"></i>
+                                    </div>
+                                    <div class="text-left">
+                                        <h4 class="font-semibold text-gray-900">{{ goal.title }}</h4>
+                                        <p class="text-sm text-gray-600">{{ goal.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technology Section -->
+<section id="technology" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <span class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full mb-6 mr-4">
+                    <i class="fas fa-cogs text-3xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"></i>
+                </span>
+                {{ config_data.about.technology.title }}
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                {{ config_data.about.technology.description }}
+            </p>
+        </div>
+
+        <!-- Technology Cards -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {% for tech in config_data.about.technology.tech_stack %}
+            <div class="bg-gradient-to-br from-{{ tech.color }}-50 to-{{ tech.color }}-100 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-{{ tech.color }}-200 transform hover:scale-105">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-{{ tech.color }}-500 to-{{ tech.color }}-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="{{ tech.icon }} text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">{{ tech.title }}</h3>
+                </div>
+                <ul class="space-y-3">
+                    {% for feature in tech.features %}
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-{{ tech.color }}-500 mt-1 mr-3"></i>
+                        <span class="text-gray-700">{{ feature }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Impact Section -->
+<section id="impact" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                <span class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-100 to-red-100 rounded-full mb-6 mr-4">
+                    <i class="fas fa-chart-line text-3xl bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent"></i>
+                </span>
+                {{ config_data.about.impact.title }}
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                {{ config_data.about.impact.description }}
+            </p>
+        </div>
+
+        <!-- Impact Areas -->
+        <div class="grid lg:grid-cols-3 gap-8">
+            {% for area in config_data.about.impact.areas %}
+            <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-{{ area.color }}-500 to-{{ area.color }}-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="{{ area.icon }} text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">{{ area.title }}</h3>
+                </div>
+                <ul class="space-y-4">
+                    {% for achievement in area.achievements %}
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                        <div>
+                            <strong class="text-gray-900">{{ achievement.title }}:</strong>
+                            <span class="text-gray-700"> {{ achievement.description }}</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Disclaimer Section -->
+<section class="py-16 bg-yellow-50 border-t border-yellow-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-3xl p-8 shadow-xl border border-yellow-200">
+            <div class="flex items-start">
+                <div class="flex-shrink-0 w-12 h-12 bg-yellow-500 text-white rounded-full flex items-center justify-center mr-6">
+                    <i class="fas fa-exclamation-triangle text-xl"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">{{ config_data.about.disclaimer.title }}</h3>
+                    <div class="prose prose-lg text-gray-700 leading-relaxed">
+                        <p class="mb-4">
+                            {{ config_data.about.disclaimer.content }}
+                        </p>
+                        <p class="mb-4">
+                            <strong>Key Points:</strong>
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 mb-4">
+                            {% for point in config_data.about.disclaimer.key_points %}
+                            <li>{{ point }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p class="font-semibold text-gray-900">
+                            {{ config_data.about.disclaimer.footer_message }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-20 bg-gradient-to-br from-blue-600 to-purple-600">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+            {{ config_data.about.call_to_action.title }}
+        </h2>
+        <p class="text-xl text-blue-100 mb-8 leading-relaxed">
+            {{ config_data.about.call_to_action.subtitle }}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            {% for action in config_data.about.call_to_action.actions %}
+            <a href="{{ action.url }}" class="inline-flex items-center px-8 py-4 {% if action.color == 'white' %}bg-white text-{{ action.bg_color }}-600 hover:bg-gray-50{% else %}bg-{{ action.bg_color }}-500 text-{{ action.color }} hover:bg-{{ action.bg_color }}-400{% endif %} font-bold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <i class="{{ action.icon }} mr-3"></i>
+                {{ action.title }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/about.js"></script>
+{% endblock %}

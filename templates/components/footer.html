@@ -1,0 +1,91 @@
+<footer class="bg-dark text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Brand -->
+            <div class="col-span-1 md:col-span-2">
+                <a href="/" class="flex items-center">
+                    <h3 class="text-2xl font-bold mb-4">
+                        <span class="text-primary">{{ config_data.project_name.primary }}</span>
+                        <span class="text-secondary">{{ config_data.project_name.secondary }}</span>
+                        <span class="text-accent">{{ config_data.project_name.tertiary }}</span>
+                    </h3>
+                </a>
+                <p class="text-gray-300 mb-4 max-w-md">
+                    {{ config_data.project_metadata.footer_text }}
+                </p>
+                <div class="flex space-x-4">
+                    <!-- GitHub Link from Config -->
+                    <a href="{{ config_data.github_url or '#' }}" target="_blank" rel="noopener noreferrer"
+                       class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <!-- Website Link from Config -->
+                    <a href="{{ config_data.website_url or '#' }}" target="_blank" rel="noopener noreferrer"
+                       class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <i class="fas fa-globe text-xl"></i>
+                    </a>
+                    <!-- Email Link from Config -->
+                    <a href="mailto:{{ config_data.contact_email or 'research@camlaslab.org.bd' }}"
+                       class="text-gray-400 hover:text-white transition-colors duration-200">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="/home" class="text-gray-300 hover:text-white transition-colors duration-200">Home</a></li>
+                    <li><a href="/algorithm" class="text-gray-300 hover:text-white transition-colors duration-200">Algorithm</a></li>
+                    <li><a href="/researchers" class="text-gray-300 hover:text-white transition-colors duration-200">Research Team</a></li>
+                    <li><a href="/about" class="text-gray-300 hover:text-white transition-colors duration-200">About</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                <ul class="space-y-2">
+                    <li><a href="/resources/dataset" class="text-gray-300 hover:text-white transition-colors duration-200">Dataset</a></li>
+                    <li><a href="{{ config_data.website_url }}/projects" class="text-gray-300 hover:text-white transition-colors duration-200">Research Papers</a></li>
+                    <li><a href="{{ config_data.website_url }}/publications" class="text-gray-300 hover:text-white transition-colors duration-200">Publications</a></li>
+                    <li><a href="/privacy/" class="text-gray-300 hover:text-white transition-colors duration-200">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Bar with CAMLAS Integration -->
+        <div class="border-t border-gray-700 mt-8 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <!-- Left Side - Project Copyright -->
+                <div class="text-center md:text-left">
+                    <p class="text-gray-400 text-sm">
+                        © {{ config_data.current_year or '2025' }} {{ config_data.app.name }}. All rights reserved.
+                    </p>
+                    <p class="text-gray-400 text-sm mt-1">
+                        <i class="fas fa-shield-alt mr-1"></i>
+                        {{ config_data.app.accessibility_statement }}
+                    </p>
+                </div>
+
+                <!-- Right Side - CAMLAS Attribution -->
+                <div class="flex items-center space-x-3 text-center md:text-right">
+                    <div class="text-gray-400 text-sm">
+                        <p>Developed by</p>
+                        <p class="text-white font-medium">CAMLAS Innovation Hub - Bangladesh</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-2 shadow-sm">
+                    <a href="{{ config_data.website_url or '#' }}" target="_blank" rel="noopener noreferrer"
+                       class="flex-shrink-0 transition-transform duration-300 hover:scale-105">
+                        <img src="/static/images/camlas.png"
+                             alt="CAMLAS Innovation Hub"
+                             class="h-8 w-auto opacity-90 hover:opacity-100"
+                             onerror="this.style.display='none'">
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

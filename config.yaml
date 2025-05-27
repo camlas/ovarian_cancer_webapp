@@ -1,0 +1,472 @@
+# Application Configuration
+app:
+  name: "Ovarian Cancer Detection System"
+  version: "1.0.0"
+  description: "AI-powered ovarian cancer detection using medical imaging"
+  accessibility_statement: "For research and educational purposes only"
+
+model_download:
+  github_base_url: "https://github.com/camlas/ovarian_cancer_webapp/releases/download/feature_extractor_resnet50"
+  required_files:
+    - "feature_extractor_resnet50.pth"
+    - "rf_feature_selector.pkl"
+    - "selected_features.pkl"
+    - "feature_scaler.pkl"
+    - "best_attcnn_classifier.pth"
+  enable_download: true
+  fallback_to_mock: true
+  preload_on_startup: true
+  download_timeout: 300
+  show_progress: true
+
+page_titles:
+  base: "Ovarian Cancer Detection System | CAMLAS"
+  home: "Home - Ovarian Cancer AI | CAMLAS"
+  algorithm: "Algorithm - Ovarian Cancer AI | CAMLAS"
+  researchers: "Research Team - Ovarian Cancer AI | CAMLAS"
+  about: "About - Ovarian Cancer AI | CAMLAS"
+  error: "Error - Ovarian Cancer AI | CAMLAS"
+  resources: "Resources - Ovarian Cancer AI | CAMLAS"
+
+# Project Status
+project_status: COMPLETED
+
+project_name:
+  primary: "Ovarian"
+  secondary: "Cancer"
+  tertiary: "AI"
+
+project_metadata:
+  paper_title: "Advanced AI Techniques for Ovarian Cancer Detection"
+  paper_description: "Advanced deep learning system for early detection and analysis of ovarian cancer from medical imaging with high accuracy and reliability."
+  footer_text: "Advanced AI-powered ovarian cancer detection system using deep learning and medical imaging to support early diagnosis and improve patient outcomes."
+
+# Contact Information
+github_url: "https://github.com/camlas/overian-cancer-histopathology"
+website_url: "https://camlaslab.org.bd"
+contact_email: "research@camlaslab.org.bd"
+dataset_url: "https://ieee-dataport.org/documents/strampn-histopathological-images-ovarian-cancer-prediction"
+
+# About Page Content
+about:
+  hero_subtitle: "Advancing cancer detection through artificial intelligence, making early diagnosis accessible and reliable for healthcare providers worldwide."
+
+  mission:
+    title: "Our Mission"
+    description: "Our mission is to develop cutting-edge AI solutions for early cancer detection, making advanced diagnostic tools accessible to healthcare providers worldwide. We believe in the power of artificial intelligence to transform healthcare and improve patient outcomes through innovative technology."
+    core_values:
+      - title: "Accessibility"
+        description: "Making advanced AI diagnostics available to all healthcare providers"
+        icon: "fas fa-globe"
+      - title: "Accuracy"
+        description: "Delivering reliable and precise cancer detection results"
+        icon: "fas fa-bullseye"
+      - title: "Ethics"
+        description: "Ensuring responsible AI development and deployment"
+        icon: "fas fa-shield-alt"
+      - title: "Innovation"
+        description: "Pushing the boundaries of medical AI technology"
+        icon: "fas fa-lightbulb"
+
+    impact_areas:
+      - title: "Early Detection"
+        description: "AI-powered early cancer screening"
+        icon: "fas fa-microscope"
+        color: "blue"
+      - title: "Clinical Support"
+        description: "Assisting healthcare professionals"
+        icon: "fas fa-user-md"
+        color: "green"
+      - title: "Global Access"
+        description: "Worldwide healthcare impact"
+        icon: "fas fa-globe"
+        color: "purple"
+      - title: "Better Outcomes"
+        description: "Improved patient care results"
+        icon: "fas fa-chart-line"
+        color: "pink"
+
+  vision:
+    title: "Our Vision"
+    description: "We envision a future where AI-powered medical imaging enables rapid, accurate, and affordable cancer screening, ultimately saving lives through early detection. Our vision extends beyond technology to encompass a comprehensive transformation of how cancer is detected, diagnosed, and treated globally."
+    quote: "The future of healthcare lies in the seamless integration of artificial intelligence with clinical expertise."
+    collaboration_message: "We believe that AI should augment human expertise, not replace it, creating a collaborative environment where technology and clinical knowledge work together to achieve the best possible patient outcomes."
+
+    future_goals:
+      - title: "Multi-Cancer Detection"
+        description: "Expand to multiple cancer types"
+        icon: "fas fa-check"
+        color: "green"
+        status: "planned"
+      - title: "Mobile Integration"
+        description: "Point-of-care diagnostic tools"
+        icon: "fas fa-mobile-alt"
+        color: "blue"
+        status: "development"
+      - title: "Global Network"
+        description: "Worldwide healthcare integration"
+        icon: "fas fa-network-wired"
+        color: "purple"
+        status: "future"
+
+  technology:
+    title: "Advanced Technology Stack"
+    description: "Our system leverages the latest advances in deep learning, computer vision, and explainable AI to provide reliable and interpretable cancer detection results."
+
+    tech_stack:
+      - title: "Deep Learning"
+        icon: "fas fa-brain"
+        color: "blue"
+        features:
+          - "Attention-based ResNet50 architecture"
+          - "Custom CNN classifiers"
+          - "Transfer learning optimization"
+          - "Multi-stage feature extraction"
+
+      - title: "Computer Vision"
+        icon: "fas fa-eye"
+        color: "purple"
+        features:
+          - "Advanced image preprocessing"
+          - "CLAHE enhancement"
+          - "Bilateral filtering"
+          - "Attention mechanism visualization"
+
+      - title: "Explainable AI"
+        icon: "fas fa-lightbulb"
+        color: "green"
+        features:
+          - "SHAP value interpretation"
+          - "Feature importance ranking"
+          - "Confidence estimation"
+          - "Clinical decision support"
+
+  impact:
+    title: "Global Impact & Recognition"
+    description: "By combining medical expertise with AI innovation, we aim to improve patient outcomes and support healthcare professionals in making informed decisions."
+
+    areas:
+      - title: "Healthcare Impact"
+        icon: "fas fa-heartbeat"
+        color: "red"
+        achievements:
+          - title: "Early Detection"
+            description: "Enabling earlier cancer diagnosis"
+          - title: "Clinical Support"
+            description: "Assisting healthcare professionals"
+          - title: "Resource Efficiency"
+            description: "Optimizing diagnostic workflows"
+
+      - title: "Research Impact"
+        icon: "fas fa-flask"
+        color: "blue"
+        achievements:
+          - title: "Publications"
+            description: "Peer-reviewed research articles"
+          - title: "Collaboration"
+            description: "International research partnerships"
+          - title: "Innovation"
+            description: "Advancing AI in medical imaging"
+
+      - title: "Social Impact"
+        icon: "fas fa-globe"
+        color: "green"
+        achievements:
+          - title: "Global Access"
+            description: "Democratizing cancer detection"
+          - title: "Education"
+            description: "Training future AI researchers"
+          - title: "Equity"
+            description: "Reducing healthcare disparities"
+
+  disclaimer:
+    title: "Important Medical Disclaimer"
+    content: "This AI-powered ovarian cancer detection system is designed for research and educational purposes only. The system is intended to assist healthcare professionals and should not be used as the sole basis for medical diagnosis or treatment decisions."
+
+    key_points:
+      - "This system is not FDA approved for clinical diagnosis"
+      - "Results should always be interpreted by qualified medical professionals"
+      - "Always consult with healthcare providers for medical advice and treatment"
+      - "This tool is designed to augment, not replace, clinical expertise"
+      - "Performance may vary across different patient populations and imaging conditions"
+
+    footer_message: "For any medical concerns or symptoms, please consult with a qualified healthcare professional immediately."
+
+  call_to_action:
+    title: "Join Our Mission"
+    subtitle: "Be part of the future of AI-powered healthcare. Explore our technology, collaborate with our team, or contribute to advancing cancer detection research."
+
+    actions:
+      - title: "Try Our System"
+        description: "Test our AI detection system"
+        url: "/home#upload-section"
+        icon: "fas fa-play"
+        color: "white"
+        bg_color: "blue"
+      - title: "Meet Our Team"
+        description: "Learn about our researchers"
+        url: "/researchers"
+        icon: "fas fa-users"
+        color: "white"
+        bg_color: "blue"
+      - title: "Learn More"
+        description: "Explore our algorithm"
+        url: "/algorithm"
+        icon: "fas fa-brain"
+        color: "white"
+        bg_color: "purple"
+
+# Research Team Information
+researchers:
+  - name: "Dr. John Smith"
+    designation: "Professor"
+    department: "Computer Science"
+    faculty: "Engineering"
+    university: "University of Technology"
+    email: "j.smith@university.edu"
+    corresponding_author: true
+    role: "Writer & Project Lead"
+    image: "researchers/1.jpeg"
+    research_gate: "https://www.researchgate.net/profile/John_Smith"
+    orcid: "0000-0001-2345-6789"
+    linkedin: "https://www.linkedin.com/in/john-smith"
+    website: "https://johnsmith.com"
+    expertise: "AI, Deep Learning, Computer Vision"
+
+  - name: "Dr. Sarah Johnson"
+    designation: "Associate Professor"
+    department: "Medical Imaging"
+    faculty: "Medicine"
+    university: "Medical College"
+    email: "s.johnson@medcollege.edu"
+    corresponding_author: false
+    role: "Medical Domain Expert"
+    image: "researchers/2.jpg"
+    research_gate: "https://www.researchgate.net/profile/Sarah_Johnson"
+    orcid: "0000-0002-3456-7890"
+    linkedin: "https://www.linkedin.com/in/sarah-johnson"
+    website: "https://sarahjohnson.com"
+    expertise: "Medical Imaging, Oncology, Clinical Research"
+
+  - name: "Dr. Michael Chen"
+    designation: "Research Fellow"
+    department: "Biomedical Engineering"
+    faculty: "Engineering"
+    university: "University of Technology"
+    email: "m.chen@university.edu"
+    corresponding_author: false
+    role: "Data Preprocessing & Feature Engineering"
+    image: "researchers/3.jpg"
+    research_gate: "https://www.researchgate.net/profile/Michael_Chen"
+    orcid: "0000-0003-4567-8901"
+    linkedin: "https://www.linkedin.com/in/michael-chen"
+    website: "https://michaelchen.com"
+    expertise: "Biomedical Engineering, Data Science, Machine Learning"
+
+  - name: "Dr. Emily Davis"
+    designation: "Clinical Researcher"
+    department: "Oncology"
+    faculty: "Medicine"
+    university: "Cancer Research Institute"
+    email: "e.davis@cancer-inst.edu"
+    corresponding_author: false
+    role: "Clinical Validation & Testing"
+    image: "researchers/4.jpeg"
+    research_gate: "https://www.researchgate.net/profile/Emily_Davis"
+    orcid: "0000-0004-5678-9012"
+    linkedin: "https://www.linkedin.com/in/emily-davis"
+    website: "https://emilydavis.com"
+    expertise: "Clinical Research, Oncology, Patient Care"
+
+  - name: "Dr. Lisasu"
+    designation: "Assistant Professor"
+    department: "Computer Science"
+    faculty: "Engineering"
+    university: "University of Technology"
+    email: "drlisasu@gmai.com"
+    corresponding_author: false
+    role: "AI Researcher & Data Scientist"
+    image: "researchers/5.jpg"
+    research_gate: "https://www.researchgate.net/profile/Lisasu"
+    orcid: "0000-0005-6789-0123"
+    linkedin: "https://www.linkedin.com/in/lisasu"
+    website: "https://lisasu.com"
+    expertise: "Artificial Intelligence, Deep Learning, Data Analysis"
+
+# Algorithm Information
+algorithm:
+  title: "Multi-Stage Deep Learning for Ovarian Cancer Detection"
+  figure_caption: >
+    Our advanced AI system employs a sophisticated multi-stage deep learning approach for accurate ovarian cancer detection from medical imaging data. The system combines
+    state-of-the-art computer vision techniques with attention mechanisms to achieve high precision and reliability in cancer detection.
+  workflow_image: "workflow.jpeg"
+
+  methodology:
+    - title: "Stage 1: Image Preprocessing"
+      steps:
+        - "CLAHE (Contrast Limited Adaptive Histogram Equalization) for contrast enhancement"
+        - "Bilateral filtering for noise reduction while preserving edges"
+        - "Standardized resizing and normalization for consistent input"
+    - title: "Stage 2: Feature Extraction"
+      steps:
+        - "Pre-trained ResNet-50 backbone with attention mechanisms"
+        - "Custom attention blocks for focusing on relevant image regions"
+        - "Deep feature extraction capturing both low-level and high-level patterns"
+    - title: "Stage 3: Feature Selection"
+      steps:
+        - "SHAP (SHapley Additive exPlanations) values for interpretable feature selection"
+        - "Selection of top 500 features based on importance ranking"
+        - "Dimensionality reduction to enhance model performance"
+    - title: "Stage 4: Classification"
+      steps:
+        - "Attention-based CNN classifier for final prediction"
+        - "Probabilistic output with confidence estimation"
+        - "Robust performance across diverse imaging conditions"
+
+  key_innovations:
+    - "Attention mechanisms for interpretable predictions"
+    - "Multi-stage feature selection for optimal performance"
+    - "Comprehensive preprocessing pipeline for robust results"
+    - "Explainable AI techniques for clinical trust"
+
+  technical_architecture:
+    feature_extraction:
+      - name: "AttentionResNet50"
+        description: "Pre-trained ResNet-50 with custom attention mechanisms for enhanced feature learning"
+      - name: "Attention Blocks"
+        description: "Focus on relevant image regions while suppressing noise and artifacts"
+    feature_selection:
+      - name: "SHAP Analysis"
+        description: "Explainable AI for interpretable feature importance ranking"
+      - name: "Select 500 Features"
+        description: "Dimensionality reduction while retaining critical information"
+    classification:
+      - name: "AttCNN Classifier"
+        description: "Attention-based CNN for final cancer/non-cancer prediction"
+      - name: "Confidence Estimation"
+        description: "Probabilistic output with uncertainty quantification"
+
+research_page:
+  title: "Research Team"
+  subtitle: "Meet the brilliant minds behind our cutting-edge ovarian cancer detection system, combining medical expertise with AI innovation"
+
+# Collaborative Excellence Configuration
+collaborative_excellence:
+  title: "Collaborative Excellence"
+  subtitle: "Our interdisciplinary approach brings together diverse expertise for breakthrough innovations"
+
+  expertise_areas:
+    - title: "Medical Expertise"
+      icon: "fas fa-heartbeat"
+      color_from: "red-500"
+      color_to: "pink-500"
+      capabilities:
+        - text: "Clinical Research Experience"
+          icon: "fas fa-check-circle"
+        - text: "Oncology Specialists"
+          icon: "fas fa-check-circle"
+        - text: "Medical Imaging Experts"
+          icon: "fas fa-check-circle"
+        - text: "Pathology Analysis"
+          icon: "fas fa-check-circle"
+        - text: "Treatment Protocol Design"
+          icon: "fas fa-check-circle"
+
+    - title: "AI Innovation"
+      icon: "fas fa-robot"
+      color_from: "blue-500"
+      color_to: "cyan-500"
+      capabilities:
+        - text: "Deep Learning Experts"
+          icon: "fas fa-check-circle"
+        - text: "Computer Vision Specialists"
+          icon: "fas fa-check-circle"
+        - text: "Data Scientists"
+          icon: "fas fa-check-circle"
+        - text: "Machine Learning Engineers"
+          icon: "fas fa-check-circle"
+        - text: "Algorithm Optimization"
+          icon: "fas fa-check-circle"
+
+    - title: "Academic Excellence"
+      icon: "fas fa-graduation-cap"
+      color_from: "purple-500"
+      color_to: "violet-500"
+      capabilities:
+        - text: "Published Researchers"
+          icon: "fas fa-check-circle"
+        - text: "International Collaboration"
+          icon: "fas fa-check-circle"
+        - text: "Grant Recipients"
+          icon: "fas fa-check-circle"
+        - text: "Peer Review Experts"
+          icon: "fas fa-check-circle"
+        - text: "Research Supervision"
+          icon: "fas fa-check-circle"
+
+# Research Impact Statistics
+research_impact:
+  title: "Research Impact"
+  subtitle: "Our research contributions to the advancement of AI in medical diagnosis"
+
+# Sample Images Configuration
+sample_images:
+  cancer_samples:
+    - "OC(1).jpg"
+    - "OC(2).jpg"
+    - "OC(3).jpg"
+    - "OC(4).jpg"
+    - "OC(5).jpg"
+    - "OC(6).jpg"
+    - "OC(7).jpg"
+    - "OC(8).jpg"
+    - "OC(9).jpg"
+    - "OC(10).jpg"
+  non_cancer_samples:
+    - "ONC(1).jpg"
+    - "ONC(2).jpg"
+    - "ONC(3).jpg"
+    - "ONC(4).jpg"
+    - "ONC(5).jpg"
+    - "ONC(6).jpg"
+    - "ONC(7).jpg"
+    - "ONC(8).jpg"
+    - "ONC(9).jpg"
+    - "ONC(10).jpg"
+
+# Model Performance Metrics
+performance:
+  accuracy: 0.9909
+  precision: 0.9917
+  sensitivity: 0.9921
+  specificity: 0.9896
+  f1_score: 0.9906
+  auc: 0.9818
+
+citation:
+  visible: true
+  title: "How to Cite Our Work"
+  subtitle: "If you use our dataset, code, or any information in your research, please cite our work"
+  bibtex: |
+    @article{ovarian_cancer_ai_2024,
+      title={Advanced AI Techniques for Ovarian Cancer Detection},
+      author={[Research Team Names]},
+      journal={[Journal Name]},
+      year={2024},
+      publisher={CAMLAS Innovation Hub},
+      url={{{ config_data.github_url if config_data and config_data.github_url else 'https://github.com/camlas/ovarian-cancer-detection' }}}
+    }
+  apa: "[Research Team Names] (2024). Advanced AI Techniques for Ovarian Cancer Detection. Journal Name. CAMLAS Innovation Hub. https://github.com/camlas/overian-cancer-histopathology"
+
+# Privacy Policy Configuration
+privacy_policy:
+  visible: true
+  title: "Privacy Policy"
+  subtitle: "Information about data collection and usage"
+  last_updated: "January 2025"
+  content:
+    data_collection: "We collect the medical images you upload to our system for AI analysis purposes."
+    report_generation: "We generate and store analysis reports based on your uploaded images."
+    data_usage: "Your uploaded images and generated reports are used solely for providing cancer detection analysis."
+    data_retention: "Uploaded images and reports may be temporarily stored for processing and can be deleted upon request."
+    contact_info: "For privacy concerns, contact us at research@camlaslab.org.bd"

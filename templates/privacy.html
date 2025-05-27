@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy - {{ config_data.app_name if config_data else "Ovarian Cancer Detection System" }}{% endblock %}
+
+{% block content %}
+<!-- Privacy Policy Hero Section -->
+<section class="relative bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                {{ config_data.privacy_policy.title if config_data and config_data.privacy_policy and config_data.privacy_policy.title else "Privacy Policy" }}
+            </span>
+        </h1>
+        <p class="text-xl text-gray-600 mb-4">
+            {{ config_data.privacy_policy.subtitle if config_data and config_data.privacy_policy and config_data.privacy_policy.subtitle else "Information about data collection and usage" }}
+        </p>
+        {% if config_data and config_data.privacy_policy and config_data.privacy_policy.last_updated %}
+        <p class="text-sm text-gray-500">
+            Last updated: {{ config_data.privacy_policy.last_updated }}
+        </p>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Privacy Policy Content -->
+<section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
+            
+            {% if config_data and config_data.privacy_policy and config_data.privacy_policy.content %}
+            
+            <!-- Data Collection -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-database text-blue-600 mr-3"></i>
+                    Data Collection
+                </h2>
+                <p class="text-gray-700 leading-relaxed">
+                    {{ config_data.privacy_policy.content.data_collection }}
+                </p>
+            </div>
+
+            <!-- Report Generation -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-file-pdf text-green-600 mr-3"></i>
+                    Report Generation
+                </h2>
+                <p class="text-gray-700 leading-relaxed">
+                    {{ config_data.privacy_policy.content.report_generation }}
+                </p>
+            </div>
+
+            <!-- Data Usage -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-shield-alt text-purple-600 mr-3"></i>
+                    Data Usage
+                </h2>
+                <p class="text-gray-700 leading-relaxed">
+                    {{ config_data.privacy_policy.content.data_usage }}
+                </p>
+            </div>
+
+            <!-- Data Retention -->
+            {% if config_data.privacy_policy.content.data_retention %}
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-clock text-orange-600 mr-3"></i>
+                    Data Retention
+                </h2>
+                <p class="text-gray-700 leading-relaxed">
+                    {{ config_data.privacy_policy.content.data_retention }}
+                </p>
+            </div>
+            {% endif %}
+
+            <!-- Contact Information -->
+            <div class="bg-blue-50 rounded-xl p-6 border border-blue-200">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-envelope text-blue-600 mr-3"></i>
+                    Contact Us
+                </h2>
+                <p class="text-gray-700 leading-relaxed">
+                    {{ config_data.privacy_policy.content.contact_info if config_data.privacy_policy.content.contact_info else "For privacy concerns, contact us at " + config_data.contact_email if config_data.contact_email }}
+                </p>
+            </div>
+
+            {% else %}
+            <!-- Fallback content if no config -->
+            <div class="text-center py-12">
+                <i class="fas fa-shield-alt text-gray-400 text-6xl mb-6"></i>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Privacy Policy</h2>
+                <div class="space-y-6 text-left max-w-2xl mx-auto">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Data Collection</h3>
+                        <p class="text-gray-700">We collect the medical images you upload to our system for AI analysis purposes.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Report Generation</h3>
+                        <p class="text-gray-700">We generate and store analysis reports based on your uploaded images.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Contact</h3>
+                        <p class="text-gray-700">For privacy concerns, contact us at research@camlaslab.org.bd</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Back to Home -->
+<section class="py-8 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <a href="/home" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200">
+            <i class="fas fa-arrow-left mr-2"></i>
+            Back to Home
+        </a>
+    </div>
+</section>
+
+{% endblock %}

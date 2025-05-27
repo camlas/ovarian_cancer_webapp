@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary Meta Tags -->
+    <title>{% block title %}{{ config_data.page_titles.base if config_data and config_data.page_titles else "Ovarian Cancer AI Detection | CAMLAS Research" }}{% endblock %}</title>
+    <meta name="title" content="{% block meta_title %}{{ config_data.page_titles.base if config_data and config_data.page_titles else "Ovarian Cancer AI Detection | CAMLAS Research" }}{% endblock %}">
+    <meta name="description" content="{% block meta_description %}{{ config_data.project_metadata.paper_description if config_data and config_data.project_metadata else "Advanced AI-powered ovarian cancer detection system using deep learning and medical imaging for early diagnosis and improved patient outcomes." }}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}ovarian cancer detection, AI medical imaging, deep learning, cancer diagnosis, histopathology, CAMLAS research, medical AI, oncology, early detection, machine learning{% endblock %}">
+    <meta name="author" content="{% block meta_author %}CAMLAS Innovation Hub{% endblock %}">
+    <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{% block canonical_url %}{{ request.url if request else config_data.website_url if config_data else 'https://camlaslab.org.bd' }}{% endblock %}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}{{ request.url if request else config_data.website_url if config_data else 'https://camlaslab.org.bd' }}{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{{ config_data.page_titles.base if config_data and config_data.page_titles else "Ovarian Cancer AI Detection | CAMLAS Research" }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ config_data.project_metadata.paper_description if config_data and config_data.project_metadata else "Advanced AI-powered ovarian cancer detection system using deep learning and medical imaging for early diagnosis." }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ config_data.website_url if config_data else 'https://camlaslab.org.bd' }}/static/images/og-image.jpg{% endblock %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{% block og_image_alt %}CAMLAS Ovarian Cancer AI Detection System{% endblock %}">
+    <meta property="og:site_name" content="CAMLAS Innovation Hub">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="{% block twitter_card %}summary_large_image{% endblock %}">
+    <meta name="twitter:url" content="{% block twitter_url %}{{ request.url if request else config_data.website_url if config_data else 'https://camlaslab.org.bd' }}{% endblock %}">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ config_data.page_titles.base if config_data and config_data.page_titles else "Ovarian Cancer AI Detection | CAMLAS Research" }}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ config_data.project_metadata.paper_description if config_data and config_data.project_metadata else "Advanced AI-powered ovarian cancer detection using deep learning and medical imaging." }}{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ config_data.website_url if config_data else 'https://camlaslab.org.bd' }}/static/images/twitter-image.jpg{% endblock %}">
+    <meta name="twitter:image:alt" content="{% block twitter_image_alt %}CAMLAS Ovarian Cancer AI Detection System{% endblock %}">
+    {% if config_data and config_data.twitter_handle %}
+    <meta name="twitter:site" content="@{{ config_data.twitter_handle }}">
+    <meta name="twitter:creator" content="@{{ config_data.twitter_handle }}">
+    {% endif %}
+
+    <!-- Additional Meta Tags -->
+    <meta name="application-name" content="{% block app_name %}{{ config_data.app.name if config_data and config_data.app else "Ovarian Cancer Detection System" }}{% endblock %}">
+    <meta name="theme-color" content="#3B82F6">
+    <meta name="msapplication-TileColor" content="#3B82F6">
+    <meta name="msapplication-navbutton-color" content="#3B82F6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="{% block apple_title %}CAMLAS Cancer AI{% endblock %}">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "{% block schema_type %}WebApplication{% endblock %}",
+        "name": "{{ config_data.app.name if config_data and config_data.app else 'Ovarian Cancer Detection System' }}",
+        "description": "{{ config_data.project_metadata.paper_description if config_data and config_data.project_metadata else 'Advanced AI-powered ovarian cancer detection system using deep learning and medical imaging.' }}",
+        "url": "{{ config_data.website_url if config_data else 'https://camlaslab.org.bd' }}",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Web Browser",
+        "creator": {
+            "@type": "Organization",
+            "name": "CAMLAS Innovation Hub",
+            "url": "{{ config_data.website_url if config_data else 'https://camlaslab.org.bd' }}",
+            "email": "{{ config_data.contact_email if config_data else 'research@camlaslab.org.bd' }}",
+            "foundingDate": "2020",
+            "location": {
+                "@type": "Place",
+                "name": "Bangladesh"
+            }
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        },
+        "featureList": [
+            "AI-powered cancer detection",
+            "Medical image analysis",
+            "Deep learning algorithms",
+            "Real-time diagnosis",
+            "Research-grade accuracy"
+        ]
+    }
+    </script>
+
+    <!-- Favicons and Icons -->
+    <link rel="icon" type="image/x-icon" href="/static/images/camlas-icon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+    <link rel="manifest" href="/static/manifest.json">
+
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/custom.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#8B5CF6',
+                        accent: '#10B981',
+                        danger: '#EF4444',
+                        warning: '#F59E0B',
+                        dark: '#1F2937',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Additional Head Content -->
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50">
+        Skip to main content
+    </a>
+
+    <!-- Navigation -->
+    {% include 'components/navbar.html' %}
+
+    <!-- Main Content -->
+    <main id="main-content" class="flex-1" role="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    {% include 'components/footer.html' %}
+
+    <!-- Scroll to Top Button - PERFECTLY CIRCULAR -->
+    <button id="scrollToTop" type="button" aria-label="Scroll to top" role="button">
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden" role="dialog" aria-modal="true" aria-labelledby="loading-title">
+        <div class="bg-white rounded-2xl p-8 max-w-sm mx-4 text-center shadow-2xl">
+            <div class="relative mb-6">
+                <div class="animate-spin rounded-full h-16 w-16 border-4 border-gray-200 border-t-primary mx-auto" role="status" aria-label="Loading"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-8 h-8 bg-primary rounded-full animate-pulse"></div>
+                </div>
+            </div>
+            <h3 id="loading-title" class="text-xl font-bold text-gray-900 mb-2">Processing Image</h3>
+            <p class="text-gray-600">AI is analyzing your image<span class="loading-dots"></span></p>
+            <div class="mt-4 w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                <div class="bg-gradient-to-r from-primary to-secondary h-2 rounded-full animate-pulse" style="width: 70%" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" crossorigin="anonymous"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="/static/js/main.js"></script>
+    {% block scripts %}{% endblock %}
+
+    <!-- Analytics and Performance -->
+    {% block analytics %}{% endblock %}
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/static/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed');
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
