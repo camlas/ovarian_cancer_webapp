@@ -32,6 +32,10 @@ httpx==0.28.1
 aiofiles==24.1.0
 anyio==4.9.0
 
+torch
+opencv-python
+scikit-learn
+
 # ===================================
 # REMOVED FOR VERCEL SIZE LIMITS:
 # torch==2.7.0              (~500MB+)
