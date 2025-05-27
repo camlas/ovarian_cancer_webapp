@@ -27,6 +27,7 @@ page_titles:
   about: "About - Ovarian Cancer AI | CAMLAS"
   error: "Error - Ovarian Cancer AI | CAMLAS"
   resources: "Resources - Ovarian Cancer AI | CAMLAS"
+  policy: "Privacy Policy - Ovarian Cancer AI | CAMLAS"
 
 # Project Status
 project_status: COMPLETED
@@ -44,6 +45,7 @@ project_metadata:
 # Contact Information
 github_url: "https://github.com/camlas/overian-cancer-histopathology"
 website_url: "https://camlaslab.org.bd"
+my_website_url: "https://ovarian-cancer-webapp.onrender.com"
 contact_email: "research@camlaslab.org.bd"
 dataset_url: "https://ieee-dataport.org/documents/strampn-histopathological-images-ovarian-cancer-prediction"
 

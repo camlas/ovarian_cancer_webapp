@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Privacy Policy - {{ config_data.app_name if config_data else "Ovarian Cancer Detection System" }}{% endblock %}
+{% block title %}{{ config_data.page_titles.policy or "Privacy Policy - " + config_data.app_name }} {% endblock %}
 
 {% block content %}
 <!-- Privacy Policy Hero Section -->
@@ -82,7 +82,13 @@
                     Contact Us
                 </h2>
                 <p class="text-gray-700 leading-relaxed">
-                    {{ config_data.privacy_policy.content.contact_info if config_data.privacy_policy.content.contact_info else "For privacy concerns, contact us at " + config_data.contact_email if config_data.contact_email }}
+                    {% if config_data and config_data.privacy_policy and config_data.privacy_policy.content and config_data.privacy_policy.content.contact_info %}
+                        {{ config_data.privacy_policy.content.contact_info }}
+                    {% elif config_data and config_data.contact_email %}
+                        For privacy concerns, contact us at {{ config_data.contact_email }}
+                    {% else %}
+                        For privacy concerns, contact us at research@camlaslab.org.bd
+                    {% endif %}
                 </p>
             </div>
 
