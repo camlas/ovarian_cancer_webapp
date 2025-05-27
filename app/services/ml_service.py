@@ -7,7 +7,7 @@ from PIL import Image
 import torch
 import torch.nn as nn
 from torchvision import transforms
-from typing import Dict, Any, Optional, Tuple
+from typing import Dict, Any
 import logging
 from pathlib import Path
 import requests
@@ -218,11 +218,12 @@ class MLService:
             return torch.device(settings.DEVICE.lower())
 
     def load_models(self) -> bool:
-        """Load all trained models and components"""
         try:
             logger.info("🔄 Loading ML models...")
 
-            model_path = Path(settings.MODEL_PATH)
+            # Use /tmp for Railway (ephemeral storage)
+            model_path = Path("/tmp/models") if os.environ.get('MODEL_PATH') else Path(settings.MODEL_PATH)
+            model_path.mkdir(parents=True, exist_ok=True)
 
             # Get model download configuration from config
             download_config = settings.get_model_download_config()
@@ -231,46 +232,45 @@ class MLService:
             if not download_config.get('enable_download', True):
                 logger.info("📁 Model download disabled, using local files only")
             else:
-                # Get model URLs from config
+                # Get model URLs from config - ONLY download essential models first
                 model_files = settings.get_github_model_urls()
 
-                logger.info(f"📦 Found {len(model_files)} model files to check/download")
+                # Filter to essential models only to save memory
+                essential_models = {
+                    'feature_extractor_resnet50.pth': model_files.get('feature_extractor_resnet50.pth')
+                }
 
-                # Download models if they don't exist locally
-                for filename, url in model_files.items():
-                    local_path = model_path / filename
-                    if not local_path.exists():
-                        logger.info(f"📥 Downloading {filename} from config URL...")
-                        success = download_model_from_github(
-                            url,
-                            str(local_path),
-                            show_progress=download_config.get('show_progress', True),
-                            timeout=download_config.get('download_timeout', 300)
-                        )
-                        if not success:
-                            logger.error(f"❌ Failed to download {filename}")
-                            if not download_config.get('fallback_to_mock', True):
-                                return False
-                    else:
-                        logger.info(f"✅ {filename} already exists locally")
+                logger.info(f"📦 Downloading {len(essential_models)} essential model files")
 
-            # Check if all required files exist (local or downloaded)
-            required_files = download_config.get('required_files', [
-                'feature_extractor_resnet50.pth',
-                'rf_feature_selector.pkl',
-                'selected_features.pkl',
-                'feature_scaler.pkl',
-                'best_attcnn_classifier.pth'
-            ])
+                # Download essential models only
+                for filename, url in essential_models.items():
+                    if url:  # Make sure URL exists
+                        local_path = model_path / filename
+                        if not local_path.exists():
+                            logger.info(f"📥 Downloading {filename}...")
+                            success = download_model_from_github(
+                                url,
+                                str(local_path),
+                                show_progress=download_config.get('show_progress', True),
+                                timeout=download_config.get('download_timeout', 300)
+                            )
+                            if not success:
+                                logger.error(f"❌ Failed to download {filename}")
+                                if not download_config.get('fallback_to_mock', True):
+                                    return False
+                        else:
+                            logger.info(f"✅ {filename} already exists locally")
+
+            # Check if essential files exist
+            essential_files = ['feature_extractor_resnet50.pth']
 
             missing_files = []
-            for file in required_files:
+            for file in essential_files:
                 if not (model_path / file).exists():
                     missing_files.append(file)
 
             if missing_files:
-                logger.warning(f"⚠️ Missing model files: {missing_files}")
-                # Check if fallback to mock is enabled
+                logger.warning(f"⚠️ Missing essential model files: {missing_files}")
                 if download_config.get('fallback_to_mock', True):
                     logger.info("🎭 Fallback to mock service enabled, creating mock service...")
                     return self._create_mock_service()
@@ -278,20 +278,32 @@ class MLService:
                     logger.error("❌ Fallback to mock disabled, cannot proceed without models")
                     return False
 
-            logger.info("📚 Loading model components...")
+            logger.info("📚 Loading essential model components...")
 
-            # Load feature extractor
+            # Load feature extractor with memory optimization
             logger.info("🧠 Loading feature extractor (AttentionResNet50)...")
-            self.feature_extractor = AttentionResNet50().to(self.device)
-
             try:
+                # Force CPU to save memory
+                self.device = torch.device('cpu')
+                logger.info(f"🔧 Using device: {self.device} (forced CPU for memory efficiency)")
+
+                self.feature_extractor = AttentionResNet50().to(self.device)
+
+                # Load checkpoint with memory optimization
                 checkpoint = torch.load(
                     model_path / 'feature_extractor_resnet50.pth',
-                    map_location=self.device
+                    map_location=self.device,
+                    weights_only=True  # Security and memory optimization
                 )
+
                 self.feature_extractor.load_state_dict(checkpoint['model_state_dict'])
                 self.feature_extractor.eval()
+
+                # Clear checkpoint from memory immediately
+                del checkpoint
+
                 logger.info("✅ Feature extractor loaded successfully")
+
             except Exception as e:
                 logger.error(f"❌ Failed to load feature extractor: {e}")
                 if download_config.get('fallback_to_mock', True):
@@ -299,62 +311,86 @@ class MLService:
                 else:
                     return False
 
-            # Load other components (if they exist)
+            # Try to load other components, but don't fail if missing
+            logger.info("🔧 Loading additional components (optional)...")
             try:
-                logger.info("🔧 Loading RF feature selector...")
-                self.rf_selector = joblib.load(model_path / 'rf_feature_selector.pkl')
-                logger.info("✅ RF feature selector loaded successfully")
+                # Try to load additional models if they exist
+                optional_files = {
+                    'rf_feature_selector.pkl': 'rf_selector',
+                    'selected_features.pkl': 'selected_features',
+                    'feature_scaler.pkl': 'scaler',
+                    'best_attcnn_classifier.pth': 'classifier'
+                }
 
-                logger.info("📝 Loading selected features...")
-                with open(model_path / 'selected_features.pkl', 'rb') as f:
-                    self.selected_features = pickle.load(f)
-                logger.info(f"✅ Selected features loaded ({len(self.selected_features)} features)")
+                components_loaded = 0
+                for filename, component_name in optional_files.items():
+                    try:
+                        file_path = model_path / filename
+                        if file_path.exists():
+                            if filename.endswith('.pkl'):
+                                if component_name == 'selected_features':
+                                    with open(file_path, 'rb') as f:
+                                        setattr(self, component_name, pickle.load(f))
+                                else:
+                                    setattr(self, component_name, joblib.load(file_path))
+                            elif filename.endswith('.pth'):
+                                classifier_checkpoint = torch.load(file_path, map_location=self.device,
+                                                                   weights_only=True)
+                                input_dim = classifier_checkpoint['input_dim']
+                                self.classifier = AttCNNClassifier(input_dim).to(self.device)
+                                self.classifier.load_state_dict(classifier_checkpoint['model_state_dict'])
+                                self.classifier.eval()
+                                del classifier_checkpoint  # Clear from memory
 
-                logger.info("📏 Loading feature scaler...")
-                self.scaler = joblib.load(model_path / 'feature_scaler.pkl')
-                logger.info("✅ Feature scaler loaded successfully")
+                            components_loaded += 1
+                            logger.info(f"✅ {component_name} loaded successfully")
+                        else:
+                            logger.info(f"⏭️ {filename} not found, will use simplified prediction")
 
-                logger.info("🎯 Loading AttCNN classifier...")
-                classifier_checkpoint = torch.load(
-                    model_path / 'best_attcnn_classifier.pth',
-                    map_location=self.device
-                )
-                input_dim = classifier_checkpoint['input_dim']
-                self.classifier = AttCNNClassifier(input_dim).to(self.device)
-                self.classifier.load_state_dict(classifier_checkpoint['model_state_dict'])
-                self.classifier.eval()
-                logger.info(f"✅ AttCNN classifier loaded successfully (input_dim: {input_dim})")
+                    except Exception as component_error:
+                        logger.warning(f"⚠️ Failed to load {component_name}: {component_error}")
+
+                logger.info(f"📊 Loaded {components_loaded}/{len(optional_files)} optional components")
 
             except Exception as e:
-                logger.warning(f"⚠️ Some model components missing or failed to load: {e}")
-                if download_config.get('fallback_to_mock', True):
-                    logger.info("🎭 Creating mock service due to component loading failure...")
-                    return self._create_mock_service()
-                else:
-                    logger.error("❌ Cannot proceed without all model components")
-                    return False
+                logger.warning(f"⚠️ Some optional components failed to load: {e}")
+                # Continue anyway - we can still do basic predictions
 
-            # Define image transform pipeline
+            # Set up image transform pipeline (lightweight version)
             logger.info("🖼️ Setting up image transformation pipeline...")
-            self.transform = transforms.Compose([
-                transforms.Resize((224, 224)),
-                CLAHE(clip_limit=2.0, tile_grid_size=(8, 8)),
-                BilateralFilter(d=9, sigma_color=75, sigma_space=75),
-                transforms.ToTensor(),
-                transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-            ])
+
+            try:
+                # Full pipeline if OpenCV is available
+                self.transform = transforms.Compose([
+                    transforms.Resize((224, 224)),
+                    CLAHE(clip_limit=2.0, tile_grid_size=(8, 8)),
+                    BilateralFilter(d=9, sigma_color=75, sigma_space=75),
+                    transforms.ToTensor(),
+                    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+                ])
+            except Exception:
+                # Fallback pipeline without OpenCV
+                logger.warning("⚠️ OpenCV not available, using basic image pipeline")
+                self.transform = transforms.Compose([
+                    transforms.Resize((224, 224)),
+                    transforms.ToTensor(),
+                    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+                ])
 
             self.models_loaded = True
-            logger.info("🎉 All models loaded successfully!")
+            logger.info("🎉 Essential models loaded successfully!")
 
             # Log model summary
             logger.info("📊 Model Loading Summary:")
             logger.info(f"   🧠 Feature Extractor: AttentionResNet50 ✅")
-            logger.info(f"   🔧 RF Selector: {type(self.rf_selector).__name__} ✅")
-            logger.info(f"   📝 Selected Features: {len(self.selected_features)} features ✅")
-            logger.info(f"   📏 Scaler: {type(self.scaler).__name__} ✅")
-            logger.info(f"   🎯 Classifier: AttCNNClassifier ✅")
+            logger.info(
+                f"   🔧 RF Selector: {'✅' if hasattr(self, 'rf_selector') and self.rf_selector else '⏭️ Skipped'}")
+            logger.info(
+                f"   📝 Selected Features: {'✅' if hasattr(self, 'selected_features') and self.selected_features else '⏭️ Skipped'}")
+            logger.info(f"   📏 Scaler: {'✅' if hasattr(self, 'scaler') and self.scaler else '⏭️ Skipped'}")
+            logger.info(f"   🎯 Classifier: {'✅' if hasattr(self, 'classifier') and self.classifier else '⏭️ Skipped'}")
             logger.info(f"   🔧 Device: {self.device} ✅")
+            logger.info(f"   💾 Memory Mode: Optimized for Railway")
 
             return True
 

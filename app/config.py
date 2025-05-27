@@ -55,7 +55,7 @@ class Settings(BaseSettings):
     PORT: int = Field(default=8000)
 
     # ML Model Settings
-    MODEL_PATH: str = Field(default="./ml_assets/saved_models")
+    MODEL_PATH: str = Field(default="/tmp/models")
     UPLOAD_PATH: str = Field(default="./static/uploads")
     REPORTS_PATH: str = Field(default="./reports")
     MAX_FILE_SIZE: int = Field(default=10485760)  # 10MB
