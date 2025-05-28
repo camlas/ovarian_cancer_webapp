@@ -205,6 +205,7 @@ class Settings(BaseSettings):
             'github_url': contact_info['github_url'],
             'website_url': contact_info['website_url'],
             'contact_email': contact_info['contact_email'],
+            'my_website_url': _config.get('my_website_url'),
             'contact_info': self.get_contact_info(),
             'current_year': datetime.now().year,
             'collaborative_excellence': self.get_collaborative_excellence(),
