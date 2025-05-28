@@ -61,15 +61,6 @@ app.include_router(privacy.router, prefix="/privacy", tags=["Privacy"])
 
 @app.get("/")
 async def root():
-    # Get model download config
-    download_config = settings.get_model_download_config()
-    if download_config.get('preload_on_startup', True):
-        print("🔄 Preloading ML models...")
-
-        # Start model preloading in background task
-        asyncio.create_task(preload_ml_models())
-    else:
-        print("⏭️ Model preloading disabled, will load on first request")
     return RedirectResponse(url="/home")
 
 
@@ -176,6 +167,16 @@ async def startup_event():
         os.makedirs("logs", exist_ok=True)
     except Exception as e:
         logger.warning(f"Could not create directories: {e}")
+
+    # Get model download config
+    download_config = settings.get_model_download_config()
+    if download_config.get('preload_on_startup', True):
+        print("🔄 Preloading ML models...")
+
+        # Start model preloading in background task
+        asyncio.create_task(preload_ml_models())
+    else:
+        print("⏭️ Model preloading disabled, will load on first request")
 
     print(f"🚀 {settings.APP_NAME} v{settings.APP_VERSION} starting up...")
     print(f"📱 Debug mode: {settings.DEBUG}")
