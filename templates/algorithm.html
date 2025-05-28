@@ -114,11 +114,13 @@
         </div>
 
         <!-- Figure Caption -->
+        {% if algorithm.figure_caption %}
         <div class="mt-8 text-center">
           <p class="text-sm text-gray-700 italic max-w-4xl mx-auto leading-relaxed text-justify">
             <strong>Figure 1:</strong> {{ algorithm.figure_caption }}
           </p>
         </div>
+        {% endif %}
       </div>
     </div>
   </div>

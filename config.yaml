@@ -44,9 +44,9 @@ project_metadata:
 
 # Contact Information
 github_url: "https://github.com/camlas/overian-cancer-histopathology"
-website_url: "https://camlaslab.org.bd"
+website_url: "https://camlas.github.io"
 my_website_url: "https://ovarian-cancer-webapp.onrender.com"
-contact_email: "research@camlaslab.org.bd"
+contact_email: "drhasan.swe@diu.edu.bd"
 dataset_url: "https://ieee-dataport.org/documents/strampn-histopathological-images-ovarian-cancer-prediction"
 
 # About Page Content
@@ -227,7 +227,7 @@ researchers:
     university: "Daffodil International University"
     email: "faruk.cis@diu.edu.bd"
     corresponding_author: false
-    role: "Writer"
+    role: "Writing, Formal Analysis, & Visualization"
     image: "researchers/faruk.jpeg"
     research_gate: "https://www.researchgate.net/profile/Md-Hosen-21"
     linkedin: "https://www.linkedin.com/in/faruk17035"
@@ -241,27 +241,27 @@ researchers:
     university: "Daffodil International University"
     email: "ai.software.cis@daffodilvarsity.edu.bd"
     corresponding_author: false
-    role: "Analysis, Model & Platform Development"
+    role: "Formal Analysis, Data Acquisition, Model & Platform Development"
     image: "researchers/rudradcruze.png"
     research_gate: "https://www.researchgate.net/profile/Francis-Rudra-D-Cruze"
     orcid: "0009-0009-9060-9015"
     linkedin: "https://www.linkedin.com/in/rudradcruze"
     expertise: "Medical Image Analysis, Computer Vision, Deep Learning"
 
-  - name: "Kah Ong Michael Gohc"
-    designation: "Research Fellow"
-    department: "Biomedical Engineering"
-    faculty: "Engineering"
-    university: "University of Technology"
+  - name: "Dr. Goh Kah Ong Michael"
+    designation: "Associate Professor"
+#    department: ""
+    faculty: "Information Science & Technology"
+    university: "Multimedia University"
     email: "michael.goh@mmu.edu.my"
     corresponding_author: false
-    role: "Data Preprocessing & Feature Engineering"
-    image: "researchers/3.jpg"
-    research_gate: "https://www.researchgate.net/profile/Michael_Chen"
-    orcid: "0000-0003-4567-8901"
-    linkedin: "https://www.linkedin.com/in/michael-chen"
-    website: "https://michaelchen.com"
-    expertise: "Biomedical Engineering, Data Science, Machine Learning"
+    role: "Supervision, Funding Acquisition"
+    image: "researchers/goh.jpg"
+    research_gate: "https://www.researchgate.net/profile/Kah-Ong-Michael-Goh"
+    orcid: "0000-0002-9217-6390"
+#    linkedin: ""
+    website: "https://mmuexpert.mmu.edu.my/michaelgoh"
+#    expertise: "Biomedical Engineering, Data Science, Machine Learning"
 
   - name: "Dr. S M Hasan Mahmud"
     designation: "Associate Professor"
@@ -270,7 +270,7 @@ researchers:
     university: "Daffodil International University"
     email: "drhasan.swe@diu.edu.bd"
     corresponding_author: true
-    role: "Project Supervisor"
+    role: "Supervision, Methodology, Conceptualization"
     image: "researchers/hasan.png"
     research_gate: "https://www.researchgate.net/profile/S-M-Hasan-Mahmud"
     orcid: "0000-0002-6828-3559"
@@ -280,10 +280,10 @@ researchers:
 # Algorithm Information
 algorithm:
   title: "Multi-Stage Deep Learning for Ovarian Cancer Detection"
-  figure_caption: >
-    Our advanced AI system employs a sophisticated multi-stage deep learning approach for accurate ovarian cancer detection from medical imaging data. The system combines
-    state-of-the-art computer vision techniques with attention mechanisms to achieve high precision and reliability in cancer detection.
-  workflow_image: "workflow.jpeg"
+#  figure_caption: >
+#    Our advanced AI system employs a sophisticated multi-stage deep learning approach for accurate ovarian cancer detection from medical imaging data. The system combines
+#    state-of-the-art computer vision techniques with attention mechanisms to achieve high precision and reliability in cancer detection.
+  workflow_image: "workflow.jpg"
 
   methodology:
     - title: "Stage 1: Image Preprocessing"
