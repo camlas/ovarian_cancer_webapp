@@ -44,7 +44,7 @@
     <meta name="theme-color" content="#3B82F6">
     <meta name="msapplication-TileColor" content="#3B82F6">
     <meta name="msapplication-navbutton-color" content="#3B82F6">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="{% block apple_title %}CAMLAS Research{% endblock %}">
 
@@ -174,20 +174,5 @@
 
     <!-- Analytics and Performance -->
     {% block analytics %}{% endblock %}
-
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/static/sw.js')
-                    .then(function(registration) {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(function(err) {
-                        console.log('ServiceWorker registration failed');
-                    });
-            });
-        }
-    </script>
 </body>
 </html>
