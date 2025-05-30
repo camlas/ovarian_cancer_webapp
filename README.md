@@ -9,6 +9,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-green)](https://fastapi.tiangolo.com)
 [![PyTorch](https://img.shields.io/badge/PyTorch-Latest-red)](https://pytorch.org)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.4-blue)](https://tailwindcss.com)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CAMLAS](https://img.shields.io/badge/CAMLAS-Innovation%20Hub-purple)](https://camlaslab.org.bd)
 
@@ -27,6 +28,7 @@ This project presents a cutting-edge **multi-stage deep learning system** for au
 - **🔍 Explainable AI**: SHAP-based feature interpretation
 - **⚡ Real-time Analysis**: Fast processing with confidence scoring
 - **📱 Web Interface**: User-friendly FastAPI-based application
+- **🎨 Modern UI**: Built with Tailwind CSS for responsive design
 - **📋 PDF Reports**: Comprehensive analysis reports generation
 - **🔒 Research Grade**: Designed for clinical research applications
 
@@ -72,6 +74,7 @@ graph TB
 ### Prerequisites
 
 - Python 3.8 or higher
+- Node.js 16+ (for Tailwind CSS)
 - CUDA-compatible GPU (optional, for faster processing)
 - 8GB+ RAM recommended
 
@@ -91,26 +94,73 @@ graph TB
    venv\Scripts\activate     # Windows
    ```
 
-3. **Install dependencies**
+3. **Install Python dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Download pre-trained models**
+4. **Install Node.js dependencies and build CSS**
+   ```bash
+   npm install
+   npm run build-css-prod
+   ```
+
+5. **Download pre-trained models**
    ```bash
    # Models will be automatically downloaded on first run
    # Or manually place models in ml_assets/saved_models/
    ```
 
-5. **Run the application**
+6. **Run the application**
    ```bash
    python -m app.main
    ```
 
-6. **Access the web interface**
+7. **Access the web interface**
    - Open your browser and navigate to `http://localhost:8000`
    - Upload medical images for analysis
    - View results and download reports
+
+## 🎨 Frontend Development
+
+### Tailwind CSS Setup
+
+This project uses **Tailwind CSS CLI** for optimal performance and customization:
+
+#### Development Workflow
+```bash
+# Watch for changes and rebuild CSS automatically
+npm run watch-css
+
+# Build CSS for development
+npm run build-css
+
+# Build minified CSS for production
+npm run build-css-prod
+```
+
+#### Custom Configuration
+The project includes custom Tailwind configuration in `tailwind.config.js`:
+
+- **Custom Colors**: Primary, secondary, accent, and CAMLAS brand colors
+- **Custom Animations**: Float effects, slide-up transitions, gentle bounces
+- **Extended Theme**: Additional spacing, fonts, and utilities
+- **Component Classes**: Pre-built navigation, citation, and UI components
+
+#### File Structure
+```
+static/css/
+├── src/
+│   └── input.css          # Source Tailwind file
+├── output.css             # Generated CSS (committed to repo)
+└── custom.css             # Additional custom styles
+```
+
+#### Key Features
+- **Optimized Bundle**: Only includes used CSS classes (~50-200KB vs 3.7MB CDN)
+- **Custom Components**: Reusable UI components with consistent styling
+- **Responsive Design**: Mobile-first approach with custom breakpoints
+- **Performance**: No runtime compilation, better caching
 
 ## 📊 Performance Metrics
 
@@ -135,8 +185,16 @@ ovarian_cancer_webapp/
 │   └── main.py                   # Application entry point
 ├── templates/                    # HTML templates
 ├── static/                       # CSS, JS, images
+│   ├── css/
+│   │   ├── src/input.css        # Tailwind source
+│   │   ├── output.css           # Generated CSS
+│   │   └── custom.css           # Custom styles
+│   └── js/                      # JavaScript files
 ├── ml_assets/                    # ML models and test data
 ├── reports/                      # Generated PDF reports
+├── node_modules/                 # Node.js dependencies
+├── package.json                  # Node.js configuration
+├── tailwind.config.js            # Tailwind configuration
 ├── config.yaml                   # Application configuration
 ├── requirements.txt              # Python dependencies
 └── README.md                     # This file
@@ -206,21 +264,30 @@ Our system is trained on the **STRAMPN Histopathological Images** dataset:
 
 ## 🎓 Research Team
 
-- **Dr. John Smith** - Project Lead & AI Researcher
-- **Dr. Sarah Johnson** - Medical Domain Expert
-- **Dr. Michael Chen** - Data Engineering & Feature Engineering
-- **Dr. Emily Davis** - Clinical Validation & Testing
-- **Dr. Lisasu** - AI Researcher & Data Scientist
+- **Md. Faruk Hosen**
+- **Francis Rudra D Cruze**
+- **Dr. Goh Kah Ong Michael**
+- **Dr. S M Hasan Mahmud**
 
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md).
+### Development Setup
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   npm install
+   ```
+4. Start development servers:
+   ```bash
+   npm run watch-css  # Terminal 1: Watch CSS changes
+   python -m app.main # Terminal 2: Run FastAPI server
+   ```
+5. Make your changes and test
+6. Build production CSS: `npm run build-css-prod`
+7. Commit your changes (`git commit -m 'Add amazing feature'`)
+8. Push to the branch (`git push origin feature/amazing-feature`)
+9. Open a Pull Request
 
 ## 👨‍💻 Development
 
@@ -239,9 +306,8 @@ This system is designed for **research and educational purposes only**. It shoul
 
 ## 📞 Support & Contact
 
-- **Email**: research@camlaslab.org.bd
-- **Website**: [CAMLAS Innovation Hub](https://camlaslab.org.bd)
-- **Issues**: [GitHub Issues](https://github.com/camlas/ovarian-cancer-detection/issues)
+- **Email**: camlaslab1@gmail.com
+- **Website**: [CAMLAS Innovation Hub](https://camlas.github.io/)
 
 ## 🙏 Acknowledgments
 
@@ -254,8 +320,8 @@ This system is designed for **research and educational purposes only**. It shoul
 
 <div align="center">
 
-**Made with ❤️ by CAMLAS Innovation Hub Bangladesh**
+**Made by CAMLAS Innovation Hub Bangladesh**
 
-[Website](https://camlaslab.org.bd) • [Research](https://camlaslab.org.bd/research) • [Contact](mailto:research@camlaslab.org.bd)
+[Website](https://camlas.github.io/) • [Research](https://camlas.github.io/publications) • [Contact](mailto:camlaslab1@gmail.com)
 
 </div>

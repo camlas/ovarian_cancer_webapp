@@ -1,0 +1,22 @@
+{
+  "name": "ovarian-cancer-detection-system",
+  "version": "1.0.0",
+  "description": "AI-powered ovarian cancer detection using deep learning",
+  "scripts": {
+    "build-css": "tailwindcss -i ./static/css/src/input.css -o ./static/css/output.css",
+    "watch-css": "tailwindcss -i ./static/css/src/input.css -o ./static/css/output.css --watch",
+    "build-css-prod": "tailwindcss -i ./static/css/src/input.css -o ./static/css/output.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  },
+  "keywords": [
+    "ovarian-cancer",
+    "ai",
+    "deep-learning",
+    "medical-imaging",
+    "camlas"
+  ],
+  "author": "CAMLAS Innovation Hub",
+  "license": "MIT"
+}

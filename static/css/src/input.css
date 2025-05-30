@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom component classes */
+@layer components {
+  .nav-link {
+    @apply text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200;
+  }
+
+  .nav-link.active {
+    @apply text-primary bg-blue-50 font-semibold;
+  }
+
+  .mobile-nav-link {
+    @apply text-gray-700 hover:text-primary hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200;
+  }
+
+  .mobile-nav-link.active {
+    @apply text-primary bg-blue-50 font-semibold;
+  }
+
+  .citation-tab {
+    @apply px-6 py-2 rounded-lg font-semibold text-sm transition-all duration-200 text-gray-600 hover:text-gray-800;
+  }
+
+  .citation-tab.active {
+    @apply bg-blue-600 text-white;
+  }
+
+  .citation-content {
+    @apply block;
+  }
+
+  .citation-content.hidden {
+    display: none;
+  }
+
+  .workflow-placeholder {
+    @apply text-center py-12 text-gray-400;
+  }
+
+  .loading-dots::after {
+    content: '';
+    animation: dots 1.5s steps(4, end) infinite;
+  }
+}
+
+/* Custom utility classes */
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  }
+
+  .bg-gradient-secondary {
+    background: linear-gradient(135deg, #8B5CF6 0%, #10B981 100%);
+  }
+
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Keyframe animations */
+@keyframes dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60% { content: '...'; }
+  80%, 100% { content: ''; }
+}
+
+/* Scroll to top button styles */
+#scrollToTop {
+  @apply fixed bottom-6 right-6 w-12 h-12 bg-primary text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 z-50 opacity-0 pointer-events-none;
+}
+
+#scrollToTop.show {
+  @apply opacity-100 pointer-events-auto;
+}
+
+/* Loading overlay styles */
+.loading-dots::after {
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .hero-title {
+    @apply text-4xl;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    @apply text-6xl;
+  }
+}
